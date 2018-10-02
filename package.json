@@ -9,8 +9,10 @@
     "eject": "expo eject"
   },
   "dependencies": {
-    "expo": "^28.0.1",
-    "react": "16.3.1",
-    "react-native": "https://github.com/expo/react-native/archive/sdk-30.0.0.tar.gz"
+    "expo": "^24.0.0",
+    "react": "16.0.0",
+    "react-native": "0.51.0",
+    "react-redux": "^5.0.6",
+    "redux": "^3.7.2"
   }
 }
