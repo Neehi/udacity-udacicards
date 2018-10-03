@@ -1,8 +1,9 @@
 import React from 'react';
+import { View } from 'react-native';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
-import App from './components/App';
-import { rootReducer } from './reducers';
+import AppNavigator from './navigation/AppNavigator';
+import rootReducer from './reducers';
 
 const store = createStore(rootReducer);
 
@@ -10,7 +11,9 @@ export default class UdaciCards extends React.Component {
   render() {
     return (
       <Provider store={store}>
-        <App />
+        <View style={{flex: 1}}>
+          <AppNavigator />
+        </View>
       </Provider>
     );
   }

@@ -9,10 +9,10 @@ function decksReducer(state = {}, action) {
         ...action.payload,
       }
     default:
-      return state
+      return state;
   }
 }
 
-export const rootReducer = combineReducers({
+export default combineReducers({
   decks: decksReducer,
 });
