@@ -2,16 +2,12 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { PRIMARY, SECONDARY, WHITE } from '../utils/colors';
 
-class DeckCard extends React.Component {
-  render() {
-    return (
-      <View style={styles.card}>
-        <Text style={styles.cardHeader}>{this.props.title}</Text>
-        <Text style={styles.cardBody}>{this.props.cardCount} Cards</Text>
-      </View>
-    );
-  }
-}
+const DeckCard = (props) => (
+  <View style={styles.card}>
+    <Text style={styles.cardHeader}>{props.deck.title}</Text>
+    <Text style={styles.cardBody}>{props.deck.questions.length} Cards</Text>
+  </View>
+);
 
 const styles = StyleSheet.create({
   card: {

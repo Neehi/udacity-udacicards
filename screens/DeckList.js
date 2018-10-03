@@ -26,23 +26,13 @@ class DeckList extends React.Component {
 
   _keyExtractor = (item, index) => item.title;
 
-  _onPressItem(id) {
-    console.log(id);
-  }
-
-  _renderItem({item}) {
-    return (
-      <TouchableOpacity
-        onPressItem={this._onPressItem}
-      >
-        <DeckCard
-          id={item.title}
-          title={item.title}
-          cardCount={item.questions.length}
-        />
-      </TouchableOpacity>
-    );
-  }
+  _renderItem= ({item}) => (
+    <TouchableOpacity
+      onPress={() => this.props.navigation.navigate("DeckView", { id: item.title })}
+    >
+      <DeckCard deck={item} />
+    </TouchableOpacity>
+  );
 
   render() {
     return (
