@@ -1,7 +1,11 @@
-import * as api from '../utils/api';
-import { RECEIVE_DECKS } from './types';
+import { ADD_DECK, RECEIVE_DECKS } from './types';
 
 export const receiveDecks = (decks) => ({
   type: RECEIVE_DECKS,
   payload: decks,
+});
+
+export const addDeck = (deck) => ({
+  type: ADD_DECK,
+  payload: deck,
 });

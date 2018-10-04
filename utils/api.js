@@ -38,3 +38,19 @@ export function fetchDecks() {
       return value ? JSON.parse(value) : _setDummyData();
     });
 }
+
+export function saveDeck(title) {
+  // Use `getItem` and `setItem` as according to the documentation
+  // `mergeItem` isn't supported by all native implementations
+  const newDeck = { title, questions: [] };
+  let decks = {};
+  return AsyncStorage.getItem(DECKS_STORAGE_KEY) // Don't call `fetchDecks` as
+    .then((value) => {                           // we don't need dummy data here
+      decks = value ? JSON.parse(value) : {};
+      decks[title] = newDeck;
+    })
+    .then(() => {
+      AsyncStorage.setItem(DECKS_STORAGE_KEY, JSON.stringify(decks));
+    })
+    .then(() => newDeck);
+}

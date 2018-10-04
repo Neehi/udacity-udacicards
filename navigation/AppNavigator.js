@@ -2,12 +2,19 @@ import React from 'react';
 import { TabNavigator, StackNavigator } from 'react-navigation';
 import DeckList from '../screens/DeckList';
 import DeckView from '../screens/DeckView';
+import NewDeck from '../screens/NewDeck';
 
 const Tabs = TabNavigator({
   DeckList: {
     screen: DeckList,
     navigationOptions: {
       tabBarLabel: 'Decks',
+    },
+  },
+  NewDeck: {
+    screen: NewDeck,
+    navigationopOptions: {
+        tabBarLabel: 'New Deck',
     },
   },
 }, {
@@ -26,6 +33,12 @@ export default StackNavigator({
     screen: DeckView,
     navigationOptions: {
       tabBarLabel: 'Deck',
+    },
+  },
+  NewDeck: {
+    screen: NewDeck,
+    navigationOptions: {
+      tabBarLabel: 'NewDeck',
     },
   },
 });
