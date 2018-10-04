@@ -2,6 +2,8 @@ import { AsyncStorage } from 'react-native';
 
 export const DECKS_STORAGE_KEY = 'UdaciCards:decks';
 
+AsyncStorage.clear(); // For testing
+
 // -private-
 const _setDummyData = () => {
   const dummyData = {
@@ -53,4 +55,25 @@ export function saveDeck(title) {
       AsyncStorage.setItem(DECKS_STORAGE_KEY, JSON.stringify(decks));
     })
     .then(() => newDeck);
+}
+
+export function createCard(deckId, question, answer) {
+  const newCard = { question: question, answer: answer };
+  let decks = {};
+  return AsyncStorage.getItem(DECKS_STORAGE_KEY)
+    .then((value) => {
+      decks = value ? JSON.parse(value) : {};
+      decks = {
+        ...decks,
+        [deckId]: {
+          //...[deckId],
+          title: decks[deckId].title,
+          questions: decks[deckId].questions.concat(newCard)
+        }
+      }
+    })
+    .then(() => {
+      AsyncStorage.setItem(DECKS_STORAGE_KEY, JSON.stringify(decks));
+    })
+    .then(() => newCard);
 }

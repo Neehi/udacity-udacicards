@@ -11,7 +11,7 @@ class DeckView extends React.Component {
     }
   }
 
-  _onPressAddCard = () => {}
+  _onPressAddCard = () => {this.props.navigation.navigate("NewQuestion", { deckId: this.props.deck.title })}
 
   _onPressStartQuiz = () => {}
 
