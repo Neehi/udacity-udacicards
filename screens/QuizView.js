@@ -1,5 +1,5 @@
 import React from 'react';
-import { ActivityIndicator, Button, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, Button, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { connect } from 'react-redux';
 import { ERROR, PRIMARY, SECONDARY, SUCCESS, WHITE } from '../utils/colors';
 
@@ -18,6 +18,10 @@ class QuizView extends React.Component {
   };
 
   componentDidMount = () => {
+    this._resetQuiz();
+  }
+
+  _resetQuiz = () => {
     this.setState({
       total: this.props.deck.questions.length,
       current: 0,
@@ -33,33 +37,33 @@ class QuizView extends React.Component {
     this._onPressNext();
   };
 
-  _onPressNext = () => {
-    this.setState({ current: this.state.current + 1 })
-  };
+  _onPressNext = () => this.setState({ current: this.state.current + 1, showQuestion: false });
+
+  _onPressGoBack = () => this.props.navigation.goBack();
 
   render() {
     if (!this.props.deck) {
       return (<ActivityIndicator />);
     }
 
-    const { total, current, showAnswer } = this.state;
+    const { total, current, correct, showAnswer } = this.state;
     const { deck } = this.props;
     const card = current < total && deck.questions[current];
     return (
       current < total
-        ? <View style={styles.container}>
+        ? // Quiz in progress
+          <View style={styles.container}>
             <Text>{current + 1} / {total}</Text>
             <View style={styles.card}>
               <Text style={styles.title}>
                 {showAnswer ? card.answer : card.question}
               </Text>
-              <View style={styles.button}>
-                <Button
-                  onPress={this._onPressToggleAnswer}
-                  title={showAnswer ? "Question" : "Answer"}
-                  color={SECONDARY}
-                />
-              </View>
+              <Text
+                style={styles.caption}
+                onPress={this._onPressToggleAnswer}
+              >
+                {showAnswer ? "Show Question" : "Show Answer"}
+              </Text>
             </View>
             <View style={styles.button}>
               <Button
@@ -78,7 +82,31 @@ class QuizView extends React.Component {
               />
             </View>
           </View>
-        : <View>
+        : // Completed so show results
+          <View style={styles.container}>
+            <View style={styles.card}>
+              <Text style={styles.title}>{`${Math.round(correct * 100 / total)}%`}</Text>
+              <Text style={styles.caption}>{`You got ${correct} out of ${total} correct`}</Text>
+              <Text style={styles.caption}>
+                {Math.round(correct * 100 / total) >= 75
+                  ? "Well done! You know this subject well!"
+                  : "It looks like you need to study some some :("}
+              </Text>
+            </View>
+            <View style={styles.button}>
+              <Button
+                onPress={this._resetQuiz}
+                title="Try Again"
+                color={PRIMARY}
+              />
+            </View>
+            <View style={styles.button}>
+              <Button
+                onPress={this._onPressGoBack}
+                title="Back"
+                color={SECONDARY}
+              />
+            </View>
           </View>
     );
   }
@@ -89,6 +117,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "column",
     paddingTop: 20,
+    backgroundColor: WHITE,
     alignItems: "center",
     justifyContent: "flex-start",
   },
@@ -98,28 +127,22 @@ const styles = StyleSheet.create({
   },
   card: {
     width: "90%",
-    margin: 20,
     padding: 20,
-    backgroundColor: WHITE,
-    borderRadius: 8,
-    elevation: 8,
-    shadowColor: "rgba(0,0,0,0.24)",
-    shadowRadius: 3,
-    shadowOpacity: 0.8,
-    shadowOffset: {
-      width: 0,
-      height: 3,
-    },
-    alignItems: "center"
+    alignItems: "center",
+    justifyContent: "space-between",
   },
   title: {
-    minHeight: 150,
     marginBottom: 20,
     color: PRIMARY,
     fontSize: 24,
     fontWeight: "bold",
     alignSelf: "center",
     textAlign: "center",
+  },
+  caption: {
+    marginBottom: 20,
+    color: SECONDARY,
+    fontSize: 16,
   },
   button: {
     width: "90%",
