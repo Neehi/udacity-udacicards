@@ -13,7 +13,7 @@ class DeckView extends React.Component {
 
   _onPressAddCard = () => {this.props.navigation.navigate("NewQuestion", { deckId: this.props.deck.title })}
 
-  _onPressStartQuiz = () => {}
+  _onPressStartQuiz = () => {this.props.navigation.navigate("QuizView", { deckId: this.props.deck.title })}
 
   render() {
     const deck = this.props.deck;
@@ -37,6 +37,7 @@ class DeckView extends React.Component {
                 onPress={this._onPressStartQuiz}
                 title="Start Quiz"
                 color={PRIMARY}
+                disabled={cardCount === 0}
               />
             </View>
           </View>

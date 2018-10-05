@@ -4,6 +4,7 @@ import DeckList from '../screens/DeckList';
 import DeckView from '../screens/DeckView';
 import NewDeck from '../screens/NewDeck';
 import NewQuestion from '../screens/NewQuestion';
+import QuizView from '../screens/QuizView';
 
 const Tabs = TabNavigator({
   DeckList: {
@@ -46,6 +47,12 @@ export default StackNavigator({
     screen: NewQuestion,
     navigationOptions: {
       tabBarLabel: 'NewQuestion',
+    },
+  },
+  QuizView: {
+    screen: QuizView,
+    navigationOptions: {
+      tabBarLabel: 'Quiz',
     },
   },
 });
