@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { material } from 'react-native-typography';
 import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
 import * as colors from '../utils/colors';
+import { clearLocalNotification, setLocalNotification } from '../utils/notifications';
 
 class QuizView extends React.Component {
   state = {
@@ -33,7 +34,14 @@ class QuizView extends React.Component {
     this._onPressNext();
   };
 
-  _onPressNext = () => this.setState({ current: this.state.current + 1, showQuestion: false });
+  _onPressNext = () => {
+    this.setState({ current: this.state.current + 1, showQuestion: false });
+    if (this.state.current >= this.state.total) {
+      // Completed a quiz so update notifications
+      clearLocalNotification()
+        .then(setLocalNotification);
+    }
+  }
 
   _onPressGoBack = () => this.props.navigation.goBack();
 
