@@ -2,7 +2,7 @@ import { AsyncStorage } from 'react-native';
 
 export const DECKS_STORAGE_KEY = 'UdaciCards:decks';
 
-AsyncStorage.clear(); // For testing
+//AsyncStorage.clear(); // For testing
 
 // -private-
 const _setDummyData = () => {
