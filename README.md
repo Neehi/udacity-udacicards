@@ -28,21 +28,21 @@ Before getting started you will need to make sure Node.js is downloaded and inst
 
 ## Getting Started
 
-Step 1: Download the Respository
-Either clone, fork or download the repository to a local folder. The repository is can be found on GitHub [here](https://github.com/Neehi/UdaciCards).
+### Step 1: Download the Respository
+Either clone, fork or download the repository to a local folder. The repository can be found on GitHub [here](https://github.com/Neehi/UdaciCards).
 
-Step 2: Navigate to the Project Folder
+### Step 2: Navigate to the Project Folder
 ```
 $ cd /path/to/repo
 ```
 
-Step 3: Install Dependencies
+### Step 3: Install Dependencies
 From within the project folder, install all dependencies using NPM.
 ```
 $ npm install
 ```
 
-Step 4: Start the Server
+### Step 4: Start the Server
 Next, simply start the server using NPM.
 ```
 $ npm start
@@ -50,7 +50,7 @@ $ npm start
 
 You can also use `expo start`.
 
-Step 5: Run the Simulator
+### Step 5: Run the Simulator
 Once the server has started you will be presented with several options:
 - Scan the QR code above with the Expo app (Android) or the Camera app (iOS).
 - Press a for Android emulator.
