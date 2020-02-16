@@ -26,9 +26,11 @@ The app will allow users to create different categories of flashcards called "de
 
 Before getting started you will need to make sure Node.js is downloaded and installed. The latest version of Node.js can be downloaded from [nodejs.org](https://nodejs.org/en/) and it's recommended to use the LTS version.
 
+*Note: It is recommended to use Node.js version 12.9.1 or version 10 LTS (see [known issues](#knownissues)).*
+
 ## Getting Started
 
-### Step 1: Download the Respository
+### Step 1: Download the Repository
 Either clone, fork or download the repository to a local folder. The repository can be found on GitHub [here](https://github.com/Neehi/UdaciCards).
 
 ### Step 2: Navigate to the Project Folder
@@ -58,6 +60,19 @@ Once the server has started you will be presented with several options:
 - Press s to sign in and enable more options.
 
 It's recommended to select `a` as at this time the project has only been tested on Android.
+
+## <a name="knownissues"></a>Known Issues
+
+### Node.js version
+```
+Expo DevTools is running at http://localhost:19002
+Opening DevTools in the browser... (press shift-d to disable)
+
+Invalid regular expression: /(node_modules[\\\]react[\\\]dist[\\\].*|website\\node_modules\\.*|heapCapture\\bundle\.js|.*\\__tests__\\.*)$/: Unterminated character class
+```
+If you see a message similar to above, it is likely caused by an issue with the version of Node.js you're using. To fix this, downgrade to Node.js version 12.9.1 or version 10 LTS.
+
+See: [https://github.com/expo/expo-cli/issues/1074](https://github.com/expo/expo-cli/issues/1074) for further details.
 
 ## Acknowledgements
 
